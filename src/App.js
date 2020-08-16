@@ -4,6 +4,7 @@ import HomePage from "./pages/homepage/homepage.component";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import ShopPage from "./pages/shop/shoppage.component";
 import Header from "./components/headers/header.component";
+import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 
 const TopicDetail = (props) => {
   return (
@@ -27,7 +28,8 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/shop" component={ShopPage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route path="/signin" component={SignInAndSignUp} />
       </Switch>
     </div>
   );
