@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import HomePage from "./pages/homepage/homepage.component";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import ShopPage from "./pages/shop/shoppage.component";
 
 const TopicDetail = (props) => {
   return (
@@ -24,8 +25,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/shop" component={TopicList} />
-        <Route path="/shop/:topicId" component={TopicDetail} />
+        <Route exact path="/shop" component={ShopPage} />
       </Switch>
     </div>
   );
