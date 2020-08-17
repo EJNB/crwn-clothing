@@ -5,34 +5,41 @@ import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import ShopPage from "./pages/shop/shoppage.component";
 import Header from "./components/headers/header.component";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import { auth } from "./firebase/firebase.utils";
 
-const TopicDetail = (props) => {
-  return (
-    <div>
-      <h1>TOPIC DETAIL PAGE {props.match.params.topicId}</h1>
-    </div>
-  );
-};
+class App extends React.Component {
+  constructor() {
+    super();
 
-const TopicList = () => {
-  return (
-    <div>
-      <h1>TOPIC LIST PAGE</h1>
-    </div>
-  );
-};
+    this.state = {
+      currentUser: null,
+    };
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route path="/signin" component={SignInAndSignUp} />
-      </Switch>
-    </div>
-  );
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      this.setState({ currentUser: user });
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header currentUser={this.state.currentUser} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route path="/signin" component={SignInAndSignUp} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
