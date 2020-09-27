@@ -12,7 +12,12 @@ const firebaseConfig = {
   appId: "1:475106391198:web:da8c39fecd7d4c0007f78f",
   measurementId: "G-PRPE3ELLQT",
 };
-
+/**
+ * Create user profile in firebase.
+ * @param userAuth
+ * @param additionalData
+ * @returns {Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>>}
+ */
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
