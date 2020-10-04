@@ -1,10 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { createStructureSelector } from "reselect";
 
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropDown from "../cart-dropdown/cart-dropdown.component";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
@@ -42,9 +45,9 @@ const Header = ({ currentUser, hidden }) => (
 /** Esto { user: { currentUser }} = state es un destructuring anidado, en el state exite una propiedad
  * llamada user y dentro otra llamada currentUser
  */
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+const mapStateToProps = createStructureSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 /**
