@@ -9,7 +9,7 @@ import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
 import "./cart-dropdown.styles.scss";
 
-const CartDropDown = ({ cartItems, history, dispatch }) => (
+const CartDropdown = ({ cartItems, history, dispatch }) => (
   <div className="cart-dropdown">
     <div className="cart-items">
       {cartItems.length ? (
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => ({
 });
 
 // withRouter will be passe match, history and location object via props
-export default withRouter(connect(mapStateToProps)(CartDropDown));
+export default withRouter(connect(mapStateToProps)(CartDropdown));
