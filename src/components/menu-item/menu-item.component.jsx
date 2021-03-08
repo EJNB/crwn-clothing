@@ -27,6 +27,6 @@ export default withRouter(MenuItem);
  * withRouter: Is a higher order component
  * higher order component: Is essentially a function that takes a component as an argument and
  * returns you a modified component
- * In this case where POWERING UP OUR MenuItem component to have access to those things related
+ * In this case where POWERING UP our MenuItem component to have access to those things related
  * to our router.
  */

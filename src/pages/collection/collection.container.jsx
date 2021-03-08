@@ -18,6 +18,7 @@ const CollectionPageContainer = compose(
 export default CollectionPageContainer;
 
 /**
- * Notice how to containers don'trender anything.
+ * A container that essentialy connects the redux part of our app int the store and passes props to single component.
+ * Notice how to containers don't render anything.
  * They just pass props down to components.
  */
