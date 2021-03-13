@@ -14,10 +14,10 @@ import Header from "./components/headers/header.component";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSerssion } from "./redux/user/user.actions";
 
-const App = ({ checkUserSerssion, currentUser }) => {
+const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
     checkUserSerssion();
-  }, [checkUserSerssion]);
+  }, [checkUserSession]);
 
   return (
     <div>
@@ -43,7 +43,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  checkUserSerssion: () => dispatch(checkUserSerssion()),
+  checkUserSession: () => dispatch(checkUserSerssion()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

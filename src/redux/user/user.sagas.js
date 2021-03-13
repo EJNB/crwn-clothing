@@ -81,7 +81,11 @@ export function* onSignOutStart() {
   yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
 }
 
-export function* signUp({ email, password, displayName }) {
+export function* onSignUpStart() {
+  yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
+}
+
+export function* signUp({ payload: { email, password, displayName } }) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     yield put(signUpSuccess({ user, additionalData: { displayName } }));
@@ -90,15 +94,11 @@ export function* signUp({ email, password, displayName }) {
   }
 }
 
-export function* onSignUpStart() {
-  yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
-}
-
 export function* signInAfterSignUp({ payload: { user, additionalData } }) {
   yield getSnapshotFromUserAuth(user, additionalData);
 }
 
-export function* onSignUpSucess() {
+export function* onSignUpSuccess() {
   yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
 }
 
@@ -109,6 +109,6 @@ export function* userSagas() {
     call(isUserAutheticated),
     call(onSignOutStart),
     call(onSignUpStart),
-    call(onSignUpSucess),
+    call(onSignUpSuccess),
   ]);
 }
