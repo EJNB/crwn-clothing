@@ -7,7 +7,11 @@ import { selectCollection } from "../../redux/shop/shop.selectors";
 
 import { firestore } from "../../firebase/firebase.utils";
 
-import "./collection.styles.scss";
+import {
+  CollectionPageContainer,
+  CollectionTitle,
+  CollectionItemsContainer,
+} from "./collection.styles";
 
 const CollectionPage = ({ collection }) => {
   useEffect(() => {
@@ -19,18 +23,20 @@ const CollectionPage = ({ collection }) => {
       console.log("I am unsubscribing");
       unsubscribeFromCollections();
     };
+    // Of course pass the empty array to indicate that we only want to use this effect when it mounts but we also want to call this return function when our component unmounts.
   }, []);
+
   const { title, items } = collection;
-  console.log(collection);
+
   return (
-    <div className="collection-page">
-      <h2 className="title">{title}</h2>
-      <div className="items">
+    <CollectionPageContainer>
+      <CollectionTitle>{title}</CollectionTitle>
+      <CollectionItemsContainer>
         {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
-      </div>
-    </div>
+      </CollectionItemsContainer>
+    </CollectionPageContainer>
   );
 };
 
