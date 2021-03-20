@@ -17,7 +17,7 @@ import {
   OptionLink,
 } from "./header.styles";
 
-const Header = ({ currentUser, hidden, mapDispatchToProps }) => (
+const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
     <LogoContainer to="/">
       <Logo className="logo" />
@@ -26,7 +26,7 @@ const Header = ({ currentUser, hidden, mapDispatchToProps }) => (
       <OptionLink to="/shop">SHOP</OptionLink>
       <OptionLink to="/shop">CONTACT</OptionLink>
       {currentUser ? (
-        <OptionLink as="div" onClick={mapDispatchToProps}>
+        <OptionLink as="div" onClick={signOutStart}>
           SIGN OUT
         </OptionLink>
       ) : (
@@ -34,7 +34,7 @@ const Header = ({ currentUser, hidden, mapDispatchToProps }) => (
       )}
       <CartIcon />
     </OptionsContainer>
-    {hidden && <CartDropdown />}
+    {hidden ? null : <CartDropdown />}
   </HeaderContainer>
 );
 

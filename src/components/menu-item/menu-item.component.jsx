@@ -1,27 +1,29 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import "./menu-item.styles.scss";
+import {
+  MenuItemContainer,
+  BackgroundImageContainer,
+  ContentContainer,
+  ContentTitle,
+  ContentSubtitle,
+} from "./menu-item.styles";
 
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
-  <div
-    className={`${size} menu-item`}
+  <MenuItemContainer
+    size={size}
     onClick={() => history.push(`${match.url}${linkUrl}`)}
   >
-    <div
+    <BackgroundImageContainer
       className="background-image"
-      style={{
-        backgroundImage: `url(${imageUrl})`,
-      }}
+      imageUrl={imageUrl}
     />
-    <div className="content">
-      <h1 className="title">{title}</h1>
-      <span className="subtitle">SHOW APP</span>
-    </div>
-  </div>
+    <ContentContainer className="content">
+      <ContentTitle>{title.toUpperCase()}</ContentTitle>
+      <ContentSubtitle>SHOP NOW</ContentSubtitle>
+    </ContentContainer>
+  </MenuItemContainer>
 );
-
-export default withRouter(MenuItem);
 
 /**
  * withRouter: Is a higher order component
@@ -30,3 +32,4 @@ export default withRouter(MenuItem);
  * In this case where POWERING UP our MenuItem component to have access to those things related
  * to our router.
  */
+export default withRouter(MenuItem);

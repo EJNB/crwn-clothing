@@ -13,8 +13,6 @@ import {
 import ShopActionTypes from "./shop.types";
 
 export function* fetchCollectionsAsync() {
-  yield console.log("I am fired");
-
   try {
     const collectionRef = firestore.collection("collections");
     const snapshot = yield collectionRef.get();
@@ -28,7 +26,7 @@ export function* fetchCollectionsAsync() {
   }
 }
 
-export function* fetchCollectionStart() {
+export function* fetchCollectionsStart() {
   yield takeLatest(
     ShopActionTypes.FETCH_COLLECTIONS_START,
     fetchCollectionsAsync
@@ -36,7 +34,7 @@ export function* fetchCollectionStart() {
 }
 
 export function* shopSagas() {
-  yield all([call(fetchCollectionStart)]);
+  yield all([call(fetchCollectionsStart)]);
 }
 
 /**
